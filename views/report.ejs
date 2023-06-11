@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal Mint | Report</title>
+    <link rel="stylesheet" href="/css/report.css">
+    <script src="/scripts/report.js" defer></script>
+</head>
+<body>
+    <%- include('./fragments/nav-1.ejs') %> 
+    <section id="options">
+        <li id="active-tab"></li>
+        <li id="deposit-t"><span>Deposits</span><span><i></i></span></li>
+        <li id="withdraw-t"><span>Withdrawals</span><span><i></i></span></li>
+        <li id="investment-t"><span>Investments</span><span><i></i></span></li>
+    </section>
+    <section id="table">
+        <div id="deposit">
+            <div id="deposit-table">
+                <div class="d-t-h">
+                    <div>Amount</div>
+                    <div>Coin</div>
+                    <div>Currency</div>
+                    <div>Wallet Address</div>
+                    <div>Status</div>
+                </div>
+            </div>
+        </div>
+        <div id="withdraw">
+            <div id="withdraw-table">
+                <div class="d-t-h">
+                    <div>Amount</div>
+                    <div>Coin</div>
+                    <div>Currency</div>
+                    <div>Wallet Address</div>
+                    <div>Status</div>
+                </div>
+            </div>
+        </div>
+        <div id="investments">
+            <table id="investments-table">
+                <tr>
+                    <th>Amount</th>
+                    <th>Plan</th>
+                    <th>Activity</th>
+                </tr>
+                <tr>
+                    
+                </tr>
+            </table>
+        </div>
+       
+    </section>
+    <div id="investment-popup" class="hidden" onclick="closeInvestmentPopup()">
+        <div id="close-i-pp"><i class="fa-solid fa-xmark"></i></div>
+        <div class="i-p-container" id="i-p-content" onclick="void(0)">
+            <h1><span id="plan-name">Copper</span> Plan</h1>
+            <div class="kv">
+                <div class="key">Amount</div>
+                <div class="val">$50</div>
+            </div>
+            <div class="kv">
+                <div class="key">Given times</div>
+                <div class="val">10</div>
+            </div>
+            <div class="kv">
+                <div class="key">Remaining times</div>
+                <div class="val">14</div>
+            </div>
+            <button class="">active</button>
+        </div>
+    </div>
+
+</body>
+</html>

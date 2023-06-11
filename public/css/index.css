@@ -1,0 +1,33 @@
+@charset "utf8";
+@import "./fa.imports.css";
+@import "./large_devices.css" screen and (min-width: 1200px);
+@import "./small_devices.css" screen and (max-width: 768px);
+@import "./tablet_devices.css" screen and (min-width: 768px) and (max-width: 1200px);
+@font-face {
+    font-family: abel;
+    src: url(./Nunito-VariableFont_wght.ttf);
+}
+
+*{ margin: 0; padding: 0; outline: none; list-style-type: none; font-family: abel;}
+img{ max-width: 40vw;}
+
+.stars-5 i{
+    color: gold;
+}
+
+button > a{
+    color: white;
+}
+a {
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: black;
+}
+::-webkit-scrollbar-thumb{
+    background: radial-gradient(azure, aquamarine);
+    border-radius: 5px;
+}

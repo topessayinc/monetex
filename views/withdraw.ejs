@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal Mint | Widthdraw</title>
+    <link rel="stylesheet" href="/css/withdraw.css">
+    
+    <script src="scripts/load.js" defer></script>
+</head>
+<body>
+    <% title = "_Withdraw" %> 
+    <%- include('./fragments/logged-in-nav.ejs') %> 
+    <section id="withdraw">
+        <form action="">
+            <!-- accountId, amount, coin, currency, walletAddress -->
+            
+            <fieldset>
+                <legend>Withdraw Your Funds</legend>
+                <label for="amount" >
+                    <span>Amount</span>
+                    <input type="number" name="amount" id="amount" min="100" max="1000" required>
+                </label>
+                <label for="coin" >
+                    <span>Coin</span>
+                    <select name="coin" id="coin" required>
+                        <option value="BTC">Bitcoin</option>
+                        <option value="ETH">Ethereum</option>
+                        <option value="Tron (Trx)">Tron Trx</option>
+                        <option value="Tether/USDT (TRC20)">Tether/USDT (TRC20)</option>
+                    </select>
+                </label>
+                <label for="walletAddress">
+                    <span>Your wallet address</span>
+                    <input type="text" name="walletAddress" id="walletAddress"  required>
+                </label>
+
+                <button>send withdraw request</button>
+            </fieldset>
+        </form>
+    </section>
+    <footer>
+        <div class="f-icon">
+            <img src="/images/icon.png" alt="">
+        </div>
+       <div class="f-prod">
+        <span>Metal Mint</span>
+       </div> 
+       <div class="f-left">
+        <a href="#">Privacy and Policy</a>
+        <a href="#">Terms and Conditions</a>
+       </div>
+    </footer>
+    <small>Copyright &copy Metalmint 2022 All rights reserved </small>
+    <script>
+        const user = JSON.parse(localStorage.user);
+        document.getElementById("mb-cancel-btn").onclick = e=>{
+            collapseBtnOptions()
+        }
+        function collapseBtnOptions(){
+            document.getElementById("nav-options").classList.toggle("mb-hidden");
+            document.getElementById("profile").classList.toggle("mb-hidden");
+            for(let child of document.getElementById("mb-cancel-btn").children){
+                child.classList.toggle("mb-hidden");
+            }
+        }
+
+        collapseBtnOptions();
+        document.forms[0].onsubmit = e =>{
+            startLoad()
+            e.preventDefault();
+            const data = new FormData(document.forms[0]);
+
+            data.append('accountId', user.id);
+            data.append('currency', 'USD');
+
+            fetch('/withdraw', {
+                body: data,
+                method: 'POST'
+            }).then(res => {
+                document.forms[0].reset();
+                try{
+                    return res.json()
+                }catch(err){
+                    return res.text()
+                }
+            }).then(d=>{
+                if(d.error){
+                    error(d.error)
+                }
+                else{
+                    inform("Withdraw resquest sent successfully")
+                }
+                
+            }).catch(err=>{
+                
+            }).finally(()=>{
+                setTimeout(()=>{ endLoad()}, 500)
+            })
+            
+        }
+    </script>
+        <script>
+            function createMessageBar(){
+                const container = document.createElement('div');
+                const iconContainer = document.createElement('div');
+                const content = document.createElement('div');
+                const closeMsgBox = document.createElement('div');
+                const closeMsgBoxIcon  = document.createElement('i');
+
+                closeMsgBoxIcon.style.color = 'white';
+                closeMsgBoxIcon.style.fontSize = '1rem';
+
+                closeMsgBoxIcon.classList.add('fa-solid', 'fa-xmark');
+                closeMsgBox.append(closeMsgBoxIcon);
+
+                container.append(iconContainer, content, closeMsgBox);
+                container.classList.add('hidden');
+
+                const styles =[
+                    {
+                        position: 'fixed',
+                        top: '0px',
+                        left: '0px',
+                        width: '100vw',
+                        height: 'fit-content',
+                        padding: '10px',
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 8fr 1fr',
+                        transition: 'ease 400ms',
+                        zIndex: 200
+                    },
+                    {
+                        textAlign: 'center',
+                        maxWidth: '80vw',
+                        overflowY: 'hidden'
+                    }
+                ]
+                function loadStyles(element, styles){
+                    for(let style in styles){
+                        element.style[style] = styles[style];
+                    }
+                }
+
+                loadStyles(container, styles[0]);
+                loadStyles(content, styles[1]);
+                return {
+                    container,
+                    iconContainer, 
+                    content, 
+                    closeMsgBox
+                };
+            }
+
+            let messageBoxElements = createMessageBar();
+            document.body.append(messageBoxElements.container);
+            function message(information, background, color, icon){
+                let {
+                    container,
+                    iconContainer, 
+                    content
+                } = messageBoxElements;
+
+                iconContainer.innerHTML = icon;
+                content.innerHTML=information;
+                content.style.color=color;
+                container.style.color = color;
+                container.style.backgroundColor= background;
+                container.classList.remove("hidden");
+                setTimeout(()=>{
+                    container.classList.add("hidden");
+                }, 7500);
+            }
+    
+            function warn(msg){
+                message(msg, '#dcc334', "black", '<i class="fa-solid fa-triangle-exclamation"></i>');
+            }
+    
+            function inform(msg){
+                message(msg, 'blue', 'white', '<i class="fa-solid fa-circle-info fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;" ></i>');
+            }
+    
+            function error(msg){
+                message(msg, 'red', 'black', '<i class="fa-solid fa-triangle-exclamation fa-fade"></i>');
+            }
+        </script>
+</body>
+</html>

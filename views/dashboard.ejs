@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        let usr = localStorage.getItem("user");
+        if (!usr){
+            location.href="/login";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <!-- font awsome - end -->
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>TylerFxBTC | Dashboard</title>
+
+    <style>
+        input{
+            background-color: transparent;
+            color: white;
+        }
+        button{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-right">
+            <div class="collapsable company-icon"> <img src="/images/icon.png" alt=""> <span>Tyler fx BTC</span></div>
+        </div>
+        
+        <div class="nav-left hidden" id="nav-left">
+            <div class="notification"><i class="fa-solid fa-bell"></i></div>
+            <div class="user-icon"><i class="fa-solid fa-user"></i></div>
+        </div>
+        
+    </nav>
+    <div class="mb _3-dots" id="mb-nav-expand"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+    <div id="collapse-icon" >
+        <i class="fa-solid fa-bars hidden"></i>
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+    <section id="left">
+        <div id="user-name" >
+            <span class="icon-l"><i class="fa-solid fa-user"></i></span>
+            <span class="title-l user-name" >
+                Michael
+            </span>
+        </div>
+
+        <div id="dashboard-l" >
+            <span class="icon-l "><i class="fa-solid fa-house-chimney"></i></span>
+            <span class="title-l">Dashboard</span>
+        </div>
+        <div id="deposit-l" >
+            <span class="icon-l"><i class="fa-solid fa-circle-dollar-to-slot"></i></span>
+            <span class="title-l">Deposit</span>
+        </div>
+        <div id="invest-l" >
+            <span class="icon-l"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+            <span class="title-l">Invest</span>
+        </div>
+        <div id="withdraw-l">
+            <span class="icon-l"><i class="fa-solid fa-credit-card"></i></span>
+            <span class="title-l">Withdraw</span>
+            <div id="w-mo" class=" hidden">
+                <div ><span class="icon-l"><i class="fa-solid fa-download"></i></span>
+                <span class="title-l">Withdraw</span></div>
+                <div ><span class="icon-l"><i class="fa-solid fa-wallet"></i></span><span class="title-l">your walets</span></div>
+            </div>
+        </div>
+        <div id="transaction-l" >
+            <span class="icon-l"><i class="fa-solid fa-briefcase"></i></span>
+            <span class="title-l">Transaction</span>
+        </div>
+        <div id="refer-l" > 
+            <span class="icon-l"><i class="fa-solid fa-user-plus"></i></span>
+            <span class="title-l">Refer Users</span>
+        </div>
+        <div id="suport-l" > 
+            <span class="icon-l"><i class="fa-solid fa-headset"></i></span> 
+            <span class="title-l">Support</span>
+        </div>
+    </section>
+    <section id="main" class="content">
+        <header>
+            <h1>Welcome, <span class="user-name">Michael</span>!</h1>
+            <div id="options-h">
+                <li id="deposit-h" >
+                    <span class="icon-h-o"><i class="fa-solid fa-circle-dollar-to-slot"></i></span>
+                    <span>Deposit</span>
+                </li>
+                <li id="invest-h" >
+                    <span class="icon-h-o"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+                    <span>Invest</span>
+                </li>
+                <li id="withdraw-h" >
+                    <span class="icon-h-o"><i class="fa-solid fa-credit-card"></i>
+                    </span><span>Withdraw</span>
+                </li>
+            </div>
+        </header>
+        <div id="user-info">
+            <div class="info">
+                <div class="info-icon"><i class="i-1 fa-solid fa-circle-dollar-to-slot"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Deposited</div>
+                    <div class="info-val" id="deposited">$0.00</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-icon"><i class=" i-2 fa-solid fa-sack-dollar"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Withdrawn</div>
+                    <div class="info-val" id="withdrawn-amount">$0.00</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-icon"><i class="i-3 fa-solid fa-gift"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Bonus</div>
+                    <div class="info-val" id="bonus-ballance">$0.00</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-icon"><i class="i-4 fa-solid fa-credit-card"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Ballance</div>
+                    <div class="info-val" id="account-ballance">$0.00</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-icon"><i class="i-6 fa-solid fa-coins"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Total Invested</div>
+                    <div class="info-val" id="investment-amount">$0.00</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-icon"><i class="i-5 fa-solid fa-coins"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Total Investments</div>
+                    <div class="info-val" id="no-of-investments">0</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-icon"><i class="i-6 fa-solid fa-coins"></i></div>
+                <div class="info-content">
+                    <div class="info-key">Active Investments</div>
+                    <div class="info-val" id="no-of-active-investments">0</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section id="deposit" class="content">
+        <header>
+            <h1>Your depoists</h1>
+
+            <button id="new-deposit-btn" onclick="location.href='/deposit'"><i class="fa-solid fa-plus" id="my-icon"> </i> New Deposit</button>
+        
+            <button onclick="location.href='/deposit'" ><i class="fa-solid fa-plus" id="my-icon"></i> Confirm Your deposit</button>
+        </header>
+       
+        <div id="deposit-content">
+            <h1>Your Deposits</h1>
+            <div class="deposit-titles">
+                <div>Amount</div>
+                <div>Payment mode</div>
+                <div>Status</div>
+                <div>Date</div>
+            </div>
+            <div id="deposit-values"></div>
+        </div>
+    </section>
+    <div id="deposit-amount-window" class="hidden">
+        <div class="d-a-w-title">
+            <div> <h2>Make new Deposit</h2> </div>
+            <div id="close-deposit-popup"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="d-a-w-content">
+            <input type="number" name="amount" id="req-pay-amount" placeholder="Enter amount here" max="100000" min="100" value="100">
+            <button onclick="goToPay()">Continue</button>
+        </div>
+    </div>
+    <section id="pay" class="content hidden">
+        <header>
+            <h1>Make Payment</h1>
+            <p>Please make your payment of $<span id="p-amount"></span> to any of the crypto wallet addresses below. Always verify and confirm you copied the wallet address correctly.</p>
+        </header>
+        
+        <div id="make-payment-content">
+            <div class="coin">
+                <div class="coin-title">Bitcoin</div>
+                <div class="coin-addr-title">BTC address</div>
+                <div class="coin-addr-name">nefjerfpoeir0934nj342nr34i</div>
+                <button id="copy">Copy Adress</button>
+            </div>
+            <div class="coin">
+                <div class="coin-title">Etherium</div>
+                <div class="coin-addr-title">ETH address</div>
+                <div class="coin-addr-name">bweurh3498n3r34394</div>
+                <button id="copy">Copy Adress</button>
+            </div>
+            <div class="coin">
+                <div class="coin-title">USDT</div>
+                <div class="coin-addr-title">USDT address</div>
+                <div class="coin-addr-name">94rmf43r93i4r34rjm3ir</div>
+                <button id="copy">Copy Adress</button>
+            </div>
+        </div>
+        <div class="online">
+            <div class="live">
+                <!-- Crypto Converter ⚡ Widget --<crypto-converter-widget shadow symbol live background-color="#383a59" border-radius="0.60rem" fiat="united-states-dollar" crypto="bitcoin" amount="1" decimal-places="2"></crypto-converter-widget><a href="https://currencyrate.today/" target="_blank" rel="noopener">CurrencyRate.Today</a><script async src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@1.5.2/dist/latest.min.js">
+
+                </script><!-- /Crypto Converter ⚡ Widget -->
+            </div>
+            <div class="live"></div>
+        </div>
+       
+    </section>
+    <section id="investment" class="content">
+        <header>
+            <h1>Invest in a plan</h1>
+        </header>
+        <div id="investment-plans">
+            <div class="investment-plan">
+                <h3>Beginner</h3>
+                <h2>$100</h2>
+                <p>Minimum</p>
+                <div class="k-v">
+                    <div class="k">Minimum deposit:</div>
+                    <div class="v">$100</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Maximum deposit:</div>
+                    <div class="v">$4,999</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Duration:</div>
+                    <div class="v">48 hours</div>
+                </div>
+                <input type="number" name="amount" id="invest-amount-1" placeholder="Your Investment Amount" min="100" max="4999">
+                <button id="invest-btn-1">Invest Now</button></div>
+            <div class="investment-plan">
+                <h3>Premium</h3>
+                <h2>$5,000</h2>
+                <p>Minimum</p>
+                <div class="k-v">
+                    <div class="k">Minimum deposit:</div>
+                    <div class="v">$5,000</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Maximum deposit:</div>
+                    <div class="v">$9,999</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Duration:</div>
+                    <div class="v">1 week</div>
+                </div>
+                <input type="number" name="amount" id="invest-amount-2" placeholder="Your Investment Amount" min="5000" max="9999">
+                <button id="invest-btn-2">Invest Now</button>
+            </div>
+            <div class="investment-plan">
+                <h3>Business</h3>
+                <h2>$10,000</h2>
+                <p>Minimum</p>
+                <div class="k-v">
+                    <div class="k">Minimum deposit:</div>
+                    <div class="v">$10,000</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Maximum deposit:</div>
+                    <div class="v">$19,999</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Duration:</div>
+                    <div class="v">2 Weeks</div>
+                </div>
+                <input type="number" name="amount" id="invest-amount-3" placeholder="Your Investment Amount" min="10000" max="19999">
+                <button id="invest-btn-3">Invest Now</button></div>
+            <div class="investment-plan">
+                <h3>Professional</h3>
+                <h2>$20,000</h2>
+                <p>Minimum</p>
+                <div class="k-v">
+                    <div class="k">Minimum deposit:</div>
+                    <div class="v">$20,000</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Maximum deposit:</div>
+                    <div class="v">$99,999</div>
+                </div>
+                <div class="k-v">
+                    <div class="k">Duration:</div>
+                    <div class="v">1 Month</div>
+                </div>
+                <input type="number" name="amount" id="invest-amount-4" placeholder="Your Investment Amount" min="20000" max="99999">
+                <button id="invest-btn-4">Invest Now</button></div>
+        </div>
+    </section>
+    <section id="withdrawal" class="content">
+        <header>
+            <h1>Request for withdrawal</h1>
+        </header>
+        <div id="withdraw-cards">
+            <div class="withdraw-card">
+                <h3>Bitcoin</h3>
+                <div class="rl">
+                    <div class="r">Minimum amount</div>
+                    <div class="l">$10</div>
+                    <div class="r">Maximum amount</div>
+                    <div class="l">$20,000</div>
+                    <div class="r">Charges</div>
+                    <div class="l">Cleared</div>
+                    <div class="r">Duration</div>
+                    <div class="l">Instant</div>
+                </div>
+                <div class="request">
+                    <button id="btn-request" onclick="chooseCoinToWithdraw('btc')">
+                    <i class="fa-solid fa-plus" id="request-icon"></i> Request withdrawal</button>
+                </div>
+            </div>
+            <div class="withdraw-card">
+                <h3>Etherium</h3>
+                <div class="rl">
+                    <div class="r">Minimum amount</div>
+                    <div class="l">$5</div>
+                    <div class="r">Maximum amount</div>
+                    <div class="l">$10,000</div>
+                    <div class="r">Charges</div>
+                    <div class="l">Cleared</div>
+                    <div class="r">Duration</div>
+                    <div class="l">Instant</div>
+                </div>
+                <button id="btn-request" onclick="chooseCoinToWithdraw('eth')"><i class="fa-solid fa-plus" id="request-icon"></i> Request withdrawal</button>
+            </div>
+            <div class="withdraw-card">
+                <h3>USDT</h3>
+                <div class="rl">
+                    <div class="r">Minimum amount</div>
+                    <div class="l">$100</div>
+                    <div class="r">Maximum amount</div>
+                    <div class="l">$10,000</div>
+                    <div class="r">Charges</div>
+                    <div class="l">Cleared</div>
+                    <div class="r">Duration</div>
+                    <div class="l">Instant</div>
+                </div>
+                <button id="btn-request" onclick="chooseCoinToWithdraw('usdt')"><i class="fa-solid fa-plus" id="request-icon"></i> Request withdrawal</button>
+            </div>
+        </div>
+    </section>
+    <section id="transaction" class="content">
+        <header>
+            <h1>Transaction History</h1>
+        </header>
+        <div id="tansaction-info">
+            <div class="transaction-titles" >
+                <div onclick="transactionShowTable(0)" id="trn-tab-1" class="trn-active-tab">Withdrawal</div>
+                <div onclick="transactionShowTable(1)" id="trn-tab-2">Deposit</div>
+                <div onclick="transactionShowTable(2)" id="trn-tab-3">Investments</div>
+            </div>
+            <hr id="divide">
+            <div id="deposit-table" class="t-table">
+                <div class="transactions-t-h">
+                    <div >Amount</div>
+                    <div>Payment mode</div>
+                    <div>Status</div>
+                    <div>Date</div>
+                </div>
+                <div class="transactions-t-b" id="deposit-table-content" ></div>
+            </div>
+            <div id="withdraw-table" class="t-table">
+                <div class="transactions-t-h">
+                    <div>Amount</div>
+                    <div>Payment mode</div>
+                    <div>Status</div>
+                    <div>Date</div>
+                </div>
+                <div class="transactions-t-b" id="withdraw-table-content">
+
+                </div>
+            </div>
+            <div id="other-t-table" class="t-table">
+                <div class="transactions-t-h">
+                    <div>Amount requested</div>
+                    <div>Status</div>
+                    <div>Plan</div>
+                    <div>Date</div>
+                </div>
+                <div class="transactions-t-b" id="other-transaction-table">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="referals" class="content">
+        <header id="referal-header">
+            <h1>Refer Users</h1>
+            <div class="referal-link">
+                <p>Your referal link : <span id="referal-link"></span> </p>
+            </div>
+        </header>
+        <div id="referal-content">
+            <h1>Your Referals</h1>
+            <div id="referal-table">
+                <div id="referal-table-header">
+                    <div>Name</div>
+                    <div>Bonus</div>
+                    <div>status</div>
+                    <div>Date joined</div>
+                </div>
+                <div id="referal-table-body">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="support" class="support">
+        <div class="support-content">
+            <div class="support"></div>
+            <div class="support">
+                <h2>TylerFxBTC spport</h2>
+                <h4>For Inquiries,Suggestions or Complains.</h4>
+                <h4>Mail Us @ :</h4>
+                <p><a href="mailto:support@tylerfxbtc.com"><i class="fa-solid fa-envelope"></i> Tyler fxbtc Support</a></p>
+                <p><a href="https://wa.me/message/7KUL33Z6PVMJK1"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a></p>
+            </div>
+            <div class="support"></div>
+        </div>
+    </section>
+
+    <div id="withdraw-request-box" class="hidden">
+        <h1>Request withdrawal<div id="close-withdraw-box" onclick="closeWithdrawBox()">
+            <i class="fa-solid fa-xmark"></i>
+        </div></h1>
+        
+        <label for="w-r-wallet-address">
+            <div>Your <span id="w-r-coin-display"></span> address</div>
+            <div><input type="text" name="" id="w-r-wallet-address"></div>
+        </label>
+        <label for="w-r-amount"> 
+            <div>Amount</div>
+            <div>
+                <input type="number" name="" id="w-r-amount">
+            </div>
+        </label>
+        <button onclick="withdraw()">Withdraw</button>
+    </div>
+    <div id="message" class="hidden">
+        <div id="message-content">
+            Hello there builder
+        </div>
+        <h1>
+            <div id="close-msg-box">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </h1>
+    </div>
+    <script type="text/javascript">
+        const leftPanel = document.getElementById("left");
+        const leftControl = document.getElementById("collapse-icon");
+        const mainContent= document.getElementById("main");
+
+        function message(information, background, color){
+            let msgBox = document.getElementById("message");
+            let msgDisplay = document.getElementById("message-content");
+            msgDisplay.innerText=information;
+            msgDisplay.style.color=color;
+            msgBox.style.color = color;
+            msgBox.style.backgroundColor= background;
+            msgBox.classList.remove("hidden");
+            setTimeout(()=>{
+                msgBox.classList.add("hidden");
+            }, 5000);
+        }
+
+        function warn(msg){
+            message(msg, 'yellow', "black");
+        }
+
+        function inform(msg){
+            message(msg, 'blue', 'white');
+        }
+
+        function error(msg){
+            message(msg, 'red', 'black');
+        }
+
+        function success(msg){
+            message(msg, 'green', 'white')
+        }
+        document.querySelectorAll(".title-l").forEach(d=>{
+                d.classList.toggle("collapse");
+            }) 
+        function minimizeLeftControlls(){
+            document.querySelectorAll(".title-l").forEach(d=>{
+                d.classList.toggle("collapse");
+            })
+            document.querySelectorAll(".content").forEach(d=>{
+                d.classList.toggle("compressed");
+            })
+            for(let e of leftControl.children){
+                e.classList.toggle("hidden")
+            }
+            closeWithdrawOptions();
+            
+            leftControl.classList.toggle("stretched");
+
+        }
+        function closeWithdrawOptions(){
+            if(!(document.getElementById("w-mo").classList.contains("hidden"))){
+                document.getElementById("w-mo").classList.toggle("hidden");
+            };
+        }
+        
+        document.getElementById("withdraw-l").onclick=()=>{
+            showItem("withdrawal")
+        }
+        function goToPay(){
+            let amnt=document.getElementById("req-pay-amount").value;
+            openCloseDepositPopup();
+            document.getElementById("p-amount").innerText=amnt;
+            showItem("pay");
+        }
+        leftControl.onclick=minimizeLeftControlls;
+
+        document.getElementById("mb-nav-expand").onclick=(e)=>{
+            document.getElementById("nav-left").classList.toggle("hidden");
+
+        }
+        function openCloseDepositPopup(){
+            document.getElementById("deposit-amount-window").classList.toggle("hidden");
+        }
+        document.getElementById("close-deposit-popup").onclick=openCloseDepositPopup;
+
+        const contentItems = ["main", "deposit", "pay", "investment", "withdrawal", "transaction", "referals", "support"].map(e=>document.getElementById(e));
+
+        /**
+         * @param {String} id
+         * @returns {Document} 
+         */
+        function showItem(){
+            let btnIds = ['dashboard-l', 'deposit-l', 'invest-l', 'withdraw-l', 'transaction-l', 'refer-l', 'suport-l'];
+            let contentIds = ["main", "deposit", "investment", "withdrawal", "transaction", "referals", "support"];
+            let _2DArr =[]
+            function id2el(id){
+                return document.getElementById(id)
+            }
+            for(let i=0; i< btnIds.length; i++){
+                _2DArr.push([id2el(btnIds[i]), id2el(contentIds[i])])
+            }
+            
+            _2DArr.forEach(([a, b])=>{
+                a.onclick=()=>{
+                    for(let e of _2DArr){
+                        let [c, d] = e;
+                        c.classList.remove('active-tab');
+                        d.style.display = 'none';
+                    }
+                    a.classList.add('active-tab')
+                    b.style.display= '';
+                }
+            })
+            document.getElementById('deposit-h').onclick =e=>{
+                _2DArr[1][0].click()
+            }
+            document.getElementById('invest-h').onclick =e=>{
+                _2DArr[2][0].click()
+            }
+            document.getElementById('withdraw-h').onclick =e=>{
+                _2DArr[3][0].click()
+            }
+            _2DArr[0][0].click();
+            closeWithdrawOptions();
+        }
+
+        showItem();
+        
+
+        function closeWithdrawBox(){
+            document.getElementById("withdraw-request-box").classList.toggle("hidden");
+        }
+
+        function chooseCoinToWithdraw(coin){
+            let limits=[
+                [10, 20000],
+                [5, 10000],
+                [100, 10000]
+            ];
+            let option=[];
+            if(coin=='btc'){
+                option=limits[0];
+            }else if(coin == 'eth'){
+                option=limits[1]
+            }else{
+                option=limits[2]
+            }
+            document.getElementById('w-r-amount').setAttribute("min", option[0]);
+            document.getElementById('w-r-amount').setAttribute("max", option[1]);
+            document.getElementById('w-r-amount').value=option[0];
+            document.getElementById("w-r-coin-display").innerText=coin;
+            document.getElementById('withdraw-request-box').classList.toggle("hidden");
+        }
+        
+        function transactionShowTable(index){
+            let buttons = ['trn-tab-1', 'trn-tab-2', 'trn-tab-3'].map(e=>document.getElementById(e))
+            let tables = ['withdraw-table', 'deposit-table', 'other-t-table'].map(e=>document.getElementById(e))
+            buttons.forEach(e=>{
+                e.classList.remove('trn-active-tab');
+            })
+            tables.forEach(d=>{
+                d.classList.add('hidden');
+            })
+
+            buttons[index].classList.add('trn-active-tab')
+            tables[index].classList.remove('hidden');
+        }
+        transactionShowTable(0);
+    </script>
+    <script>
+        const user = JSON.parse(localStorage.getItem("user"));
+        user.referalLink = location.origin+"/signup?invite_link="+user.id
+        document.getElementById("referal-link").innerText=user.referalLink;
+        document.querySelectorAll(".user-name").forEach(e=>e.innerHTML=user.name.split(" ")[0]);
+        let reload=async ()=>{
+            setTimeout(()=>{
+                location.reload();
+            }, 3500);
+        };
+        
+        async function postData(data, url){
+            const jsonRes= await fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(data)
+            });
+
+            return jsonRes;
+        }
+
+        function getFullData(){
+            const data = {
+                id: user.id,
+                accessKey: user.accessKey
+            };
+            fetch("/account", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(data)
+            }).then(res=>{
+                return res.json();
+            }).then(info=>{
+                localStorage.setItem("fullInfo", JSON.stringify(info));
+            }).catch(err=>{
+                console.log(err);
+            }).finally(()=>{
+                let info=JSON.parse(localStorage.getItem("fullInfo"));
+                placeValues(info);
+            });
+        }
+        async function handleResponse(jsonRes, successMessage){
+            jsonRes.json().then(result=>{
+                showItem('main');
+                if(jsonRes.ok){
+                    success(successMessage);
+                }else{
+                    console.log(result)
+                    warn("failed"+result.error);
+                }
+                
+            }).catch(err=>{
+                showItem("main");
+                error(err);
+            })
+        }
+        async function initiateDeposit(){
+
+            const data={
+                amount: document.getElementById("proof-amount").value, 
+                id: user.id, 
+                email: user.email,
+                coin: document.getElementById("pay-proof-coin").value,
+                coinAddress: document.getElementById("proof-coin-address").value,
+                currency: "USD",
+                date: new Date().toUTCString()
+            };
+            
+            const jsonRes = await postData(data, "/deposit");
+            
+            handleResponse(jsonRes, "Deposit proof sent successfully, the administrators are working on it now");
+            reload();
+        }
+        
+        
+        /**
+         * @param {Number} amount
+        */
+        async function invest(amount){
+            const data={
+                email: user.email,
+                amount,
+                accountId: user.id      
+            };
+            const jsonRes= await postData(data, "/invest");
+
+            handleResponse(jsonRes, "Investment was successful, check in later to see when earnings begin");
+
+            
+
+            reload();
+        }
+
+        async function withdraw(){
+            let data={
+                accountId:user.id,
+                amount: document.getElementById("w-r-amount").value,
+                coin: document.getElementById("w-r-coin-display").innerText,
+                walletAddress: document.getElementById("w-r-wallet-address").value,
+                currency: 'USD'
+            };
+            document.getElementById("withdraw-request-box").classList.add("hidden");
+            let jsonRes=await postData(data, "/withdraw");
+            handleResponse(jsonRes, "Withdrawal request sent successfuly, waiting for its review");
+            reload();
+        }
+
+        [
+            ["invest-amount-1", "invest-btn-1"],
+            ["invest-amount-2", "invest-btn-2"],
+            ["invest-amount-3", "invest-btn-3"],
+            ["invest-amount-4", "invest-btn-4"],
+        ].forEach(d=>{
+            document.getElementById(d[1]).onclick=e=>{
+                /**
+                 * @type {Number} amnt
+                 * @type {Number} _max
+                 * @type {Number} _min
+                */
+                let amnt = +document.getElementById(d[0]).value;
+                let _max = +document.getElementById(d[0]).getAttribute('max')
+                let _min = +document.getElementById(d[0]).getAttribute('min')
+                if(amnt > _max){
+                console.log({amnt, _max})
+                    return error("amount should be less than "+ _max)
+                }else if(amnt < _min){
+                    return error('amount should be more than '+ _min)
+                }
+                showItem("main");
+                invest(amnt);
+            }
+        });
+    </script>
+    <script>
+        // place values to the page content
+        function totalDeposited(arr){
+            let answer = 0;
+            for(let e of arr){
+                if(e.verified){
+                    answer+=e.amount
+                }
+            }
+            return (+parseFloat(answer).toFixed(2)).toLocaleString('en-US');
+        }
+        function totalWithdrawn(arr){
+            let answer = 0;
+            if(arr.length<1){
+                answer = 0;
+            }else{
+                for(let d of arr){
+                    answer+= d.verified? d.amount : 0;
+                }
+            }
+            return (+parseFloat(answer).toFixed(2)).toLocaleString('en-US');
+        }
+        function totalInvested(arr){
+            if(arr.length<1){
+                return 0;
+            }
+            const answer = arr.map(e=>e.amount).reduce((t, d)=> t+d);
+	    return (+parseFloat(answer).toFixed(2)).toLocaleString('en-US')
+        }
+
+
+        function placeValues(accountInfo){
+            let _no_of_investments_ = 0;
+            for(let i of accountInfo.investments) _no_of_investments_ += i.alive; 
+            
+            document.getElementById("deposited").innerText = `$${totalDeposited(accountInfo.deposits)}`;
+
+            document.getElementById("withdrawn-amount").innerText=`$${totalWithdrawn(accountInfo.withdrawals)}`
+
+            document.getElementById("investment-amount").innerText=`$${totalInvested(accountInfo.investments)}`
+
+            document.getElementById("account-ballance").innerText='$'+(parseInt(accountInfo.ballance)).toLocaleString('en-us')+'.0';
+
+            document.getElementById("bonus-ballance").innerText='$' + parseFloat(accountInfo.bonus).toFixed(2);
+
+            document.getElementById("no-of-investments").innerText=accountInfo.investments.length;
+
+            document.getElementById("no-of-active-investments").innerText = _no_of_investments_;
+
+            document.getElementById("withdraw-table-content").innerHTML=accountInfo.withdrawals.map(d=>{
+                return `<div class="withdraw-record">
+                    <div> $${parseFloat(d.amount).toFixed(2)} </div> 
+                    <div> ${d.coin} </div> 
+                    <div> ${d.completed?"completed":"pending"} </div> 
+                    <div> ${new Date(d.createdAt).toLocaleString() || "not specified"} </div> 
+                    </div>
+                    `
+            }).join("");
+
+            
+            let dData=accountInfo.deposits.map(d=>{
+                
+                return `<div class="withdraw-record">
+                    <div> $${parseFloat(d.amount).toFixed(2)} </div> 
+                    <div> ${d.coin} </div> 
+                    <div> ${d.verified?"completed":"pending"} </div> 
+                    <div> ${new Date(d.createdAt).toLocaleString() || "not specified"} </div> 
+                    </div>
+                    `
+            }).join("");
+            document.getElementById("deposit-table-content").innerHTML=dData;
+
+            let iData = accountInfo.investments.map(d=>{
+                return `<div class="withdraw-record">
+                    <div> $${parseFloat(d.amount).toFixed(2)} </div> 
+                    <div> ${d.alive? "active" : "completed"} </div> 
+                    <div> ${d.plan} Plan</div> 
+                    <div> ${new Date(d.createdAt).toLocaleString() || "not specified"} </div> 
+                </div>
+                `
+            }).join("");
+            document.getElementById("other-transaction-table").innerHTML = iData;
+            document.getElementById("deposit-values").innerHTML = dData;
+        }
+        getFullData();
+        
+    </script>
+</body>
+</html>

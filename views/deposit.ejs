@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/fa.imports.css">
+    <title> Tyler fxbtc | Deposit</title>
+    <link rel="stylesheet" href="./css/deposit-page.css">
+    <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/deposit.js" defer></script>
+</head>
+<body>
+   <% title = "_Deposit" %> 
+   <div class="hidden">
+    <%- include('./fragments/logged-in-nav.ejs') %> 
+   </div>
+   <header>
+    <h1><%= title %> </h1>
+    <div id="navigation-container">
+        <div><a href="/">Home <i class="fa-solid fa-home"></i></a>  
+            <a href="/dashboard" class="innactive-link">Dashboard <span class="dashboard-link"><i class="fa-solid fa-ellipsis-vertical"></i><i class="fa-solid fa-ellipsis-vertical"></i><i class="fa-solid fa-ellipsis-vertical"></i></span></a></div>
+    </div>
+    </header>
+    <section id="confirmation">
+        <form action="/deposit" id="proof-form" class="" method="POST" enctype="multipart/form-data">
+            <div id="close-proof-form" onclick="expandConfirmButton()">
+                <span class="hidden"><i class="fa-solid fa-caret-right"></i> <span class="send-proof-txt">Send deposit proof</span></span>
+                <i class="fa-solid fa-caret-down "></i>
+            </div>
+            <fieldset>
+                <legend>Confirm Deposit</legend>
+                <div class="center">Fill this form if you have made a deposit</div>
+                <label for="proof-amount">
+                    <div>
+                        <span>
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </span>
+                        <span>Amount</span>
+                    </div>
+                    <input type="number" id="proof-amount" name="amount" min="5" max="100000" required>
+                </label>
+                <label for="coin-type">
+                    <div>
+                        <i class="fa-solid fa-coins"></i>
+                        <span>Coin</span>
+                    </div>
+                    <select name="coin" id="coin-type" required>
+                        <option value="Tron (Trx)">Tron Trx</option>
+                        <option value="Tether/USDT (TRC20)">Tether/USDT (TRC20)</option>
+                        <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                        <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                    </select>
+                </label>
+                <label for="wallet-address">
+                    <div>
+                        <i class="fa-solid fa-wallet"></i>
+                        <span>Wallet Address</span>
+                    </div>
+                    <input type="text" name="walletAddress" id="wallet-address" required >
+                </label>
+                <label for="image-proof">
+                    <div>
+                        <i class="fa-solid fa-image"></i>
+                        <span>Screenshot</span>
+                    </div>
+                    <input type="file" name="imageProof" id="image-proof" required accept="image/*">
+                </label>
+                <input type="text" name="accountId" id="account-id-input" class="hidden">
+                <button>submit</button>
+            </fieldset>
+            
+        </form>
+    </section>
+    <section id="deposit">
+        <div class="deposit">
+            <div class="deposit-title">
+                <p>Deposit</p>
+                <h1>
+                    Tron (Trx)
+                </h1>
+                <p>coins</p>
+            </div>
+            <div>
+                <img src="./images/tron-icon.png" alt="">
+            </div>
+            <button class="invest" onclick="initiatePayment(0)">Next</button>
+        </div>
+        <div class="deposit">
+            <div class="deposit-title">
+                <p>Deposit</p>
+                <h1>
+                    TETHER/USDT (TRC20)
+                </h1>
+                <p>coins</p>
+            </div>
+            <div>
+                <img src="./images/usdt-icon.png" alt="">
+            </div>
+            <button class="invest" onclick="initiatePayment(1)">Next</button>
+        </div>
+        <div class="deposit">
+            <div class="deposit-title">
+                <p>Deposit</p>
+                <h1>
+                    Bitcoin (BTC)
+                </h1>
+                <p>coins</p>
+            </div>
+            <div>
+                <img src="images/Bitcoin-Emblem-1.png" alt="">
+            </div>
+            <button class="invest" onclick="initiatePayment(2)">Next</button>
+        </div>
+        <div class="deposit">
+            <div class="deposit-title">
+                <p>Deposit</p>
+                <h1>
+                   Ethereum (ETH)
+                </h1>
+                <p>coins</p>
+            </div>
+            <div>
+                <img src="./images/Ethereum-ETH-icon.png" alt="">
+            </div>
+            <button class="invest" onclick="initiatePayment(3)">Next</button>
+        </div>
+    </section>
+    <footer>
+        <div class="f-icon">
+            <img src="./images/icon.png" alt="">
+        </div>
+       <div class="f-prod">
+        <span>Tyler fxbtc</span>
+       </div> 
+       <div class="f-left">
+        <a href="#">Privacy and Policy</a>
+        <a href="#">Terms and Conditions</a>
+       </div>
+    </footer>
+    <small>Copyright &copy Tyler fxbtc 2022 All rights reserved </small>
+    <div id="deposit-box" class="hidden">
+        <h1><span>Payment by <span id="pay-cur"></span></span> <span id="x-close-pay-icon" onclick="closeDepositBox()"><i class="fa-solid fa-xmark"></i></span></h1>
+        <div class="pay-limits">
+            <p>Deposit Limit: 25.00 - 100,000.00 USD</p>
+            <p>Charge: 0.00 USD</p>
+        </div>
+        <div class="pay-input" id="pay-input">
+            <p>Enter Amount</p>
+            <label for="pay-amount"><input type="number" name="" id="pay-amount" placeholder="Amount" min="25" max="100000"><div class="p-a-usd">USD</div></label>
+        </div>
+        <div class="pay-controls">
+            <button id="close-payment" onclick="closeDepositBox()">Close</button>
+            <button id="confirm-payment" onclick="showCoinAddress()">Confirrm</button>
+        </div>
+    </div>
+    <div id="coin-address" class="hidden">
+        <div id="close-coin-addr" onclick="closeCoinAddress()"><i class="fa-solid fa-xmark"></i></div>
+        <p>Pay <span class="pay-amnt-container">$<span id="pay-amnt-1">50</span></span> worth of <span id="pay-coin-1"></span> to wallet address</p>
+        <div id="coin-addr-container">
+            <input type="text"  value="eiowfhqweiorfjoqwe;rfqe" id="coin-addr-val-1" disabled> 
+            <span onclick="copyWalletAddr()"><i class="fa-solid fa-copy"></i> </span>
+        </div>
+        
+    </div>
+    
+    <!-- message definition -->
+    <div id="message" class="hidden">
+        <div id="message-icon">
+        </div>
+        <div id="message-content">
+            Hello there builder
+        </div>
+        <h1>
+            <div id="close-msg-box">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </h1>
+    </div>
+
+      
+    <script>
+        
+    </script>
+    <style>
+        .hidden{
+            display: none !important;
+        }
+        #message{
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: fit-content;
+            padding: 10px;
+            display: grid;
+            grid-template-columns:1fr 8fr 1fr;
+            transition: ease 400ms;
+            z-index: 200;
+        }
+        #message-content{
+            text-align: center;
+            max-width: 80vw;
+            overflow-y: h;
+        }
+        #message-content::-webkit-scrollbar{
+            display: none;
+        }
+        #message i{
+            font-size: 2rem;
+            color: white;
+        }
+    </style>
+   
+</body>
+</html>

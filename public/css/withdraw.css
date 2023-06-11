@@ -1,0 +1,285 @@
+@charset "utf8";
+
+@import url(./fa.imports.css);
+
+@font-face {
+    font-family: nunito;
+    src: url(Nunito-VariableFont_wght.ttf);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: nunito;
+    box-sizing: border-box;
+    color: white;
+}
+body{
+    background-color: rgb(44, 55, 110);
+}
+::-webkit-scrollbar{
+    width: 10px;
+    box-shadow: inset 0px 0px 4px 1px grey;
+}
+::-webkit-scrollbar-thumb{
+    width: 10px;
+    border-radius: 5px;
+    background: #b3b3b366;
+    box-shadow: inset 0px 0px 4px 1px rgb(98, 98, 98);
+}
+img{
+    max-width: 50vw;
+}
+
+button{
+    background: rgb(142, 160, 255);
+    color: black;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+}
+input, select{
+    background: transparent;
+    border: 1px solid rgb(142, 160, 255);
+    outline: rgb(142, 160, 255);
+}
+option{
+    color: black;
+    background-color: rgb(160, 176, 252);
+}
+.hidden{
+    display: none !important;
+}
+
+li{
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+nav{
+    position: fixed;
+    top: 0px;
+    padding: 10px;
+    padding-bottom: 0px;
+    background: #1c1c3d;
+    width: 100vw;
+    z-index: 10;
+    color: white;
+}
+
+nav img{
+    max-width: 40px;
+}
+
+@media screen and (max-width: 768px){
+    #mb-cancel-btn{
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        z-index: 11;
+        font-size: 30px;
+    }
+    .mb-hidden{
+        display: none !important;
+    }
+}
+
+
+nav a{
+    color: white;
+}
+
+nav button{
+    background-color: rgb(52, 65, 130);
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    border: none;
+}
+
+nav button, nav li{
+    margin: 10px;
+}
+#profile{
+    padding-top: 10vh;
+}
+#profile button:nth-child(1){
+    border: 1px solid white;
+    background-color: transparent;
+}
+
+#nav-options > li > a > span{
+    padding-left: 10px;
+}
+#nav-options span.dashboard-link{
+    padding-left: 0px;
+}
+header{
+    padding-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.dashboard-link i{
+    padding-right: 2px;
+}
+#navigation-container{
+    text-align: right;
+}
+#navigation-container a{
+    display: block;
+}
+#navigation-container a:nth-child(2){
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1080px){
+    header, section, footer, small{
+        width: 90vw;
+        margin: 20px auto;
+    }
+    nav{
+        padding: 5px 5vw;
+        display: grid;
+        grid-template-columns: 1fr 5fr 2fr;
+    }
+    .mb-hidden{
+        display: block;
+    }
+    #nav-options li a i{
+        display: none;
+    }
+    #nav-options a{
+        font-size: .9rem;
+    }
+    #nav-options{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 5px;
+    }
+    .mb{
+        display: none;
+    }
+    #profile{
+        display: grid;
+        padding: 0px;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+    #profile button{
+        padding: 5px;
+    }
+    #profile span{
+        display: none;
+    }
+    #deposit{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .deposit{
+        min-width: 300px;
+        gap: 5px;
+    }
+}
+
+@media screen and (min-width: 1080px){
+    header, section, footer, small{
+        width: 80vw;
+        margin: 20px auto;
+    }
+    nav{
+        padding: 5px 5vw;
+        display: grid;
+        grid-template-columns: 50px 5fr 1fr;
+    }
+    .mb-hidden{
+        display: block;
+    }
+    #nav-options li{
+        height: fit-content;
+        text-align: center;
+    }
+    #nav-options li a span{
+        font-size: .75rem;
+    }
+    #nav-options li a i{
+        font-size: 1rem;
+    }
+    #nav-options li a span:hover{
+        color: white;
+    }
+    #nav-options li:hover{
+        background-color: #344182;
+    }
+    #nav-options{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 5px;
+    }
+    .mb{
+        display: none;
+    }
+    #profile{
+        display: grid;
+        padding: 0px;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+    #profile button a{
+        height: fit-content;
+        display: grid;
+        grid-template-columns: 30px 1fr;
+    }
+    #profile button{
+        height: fit-content;
+    }
+    
+    #navigation-container > div{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}
+header{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+label{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 20px 5px;
+}
+
+form{
+    width: 500px;
+    max-width: 90vw;
+    margin: 10px auto;
+}
+
+fieldset{
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+form button{
+    display: block;
+    margin: 10px auto;
+}
+
+footer{
+    padding: 40px 5px;
+    text-align: center;
+}
+footer > *{
+    padding-top: 20px;
+}
+footer img{
+    width: 10vw;
+}
+
+small{
+    position: absolute;
+    bottom: 5px;
+    width: 100vw;
+    text-align: center;
+}

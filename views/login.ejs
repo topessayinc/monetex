@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyler fxbtc | Login</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/fa.imports.css">
+    <script src="scripts/load.js" defer></script>
+    <script src="scripts/message.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div><img src="./images/icon.png" alt="company logo"></div>
+    </nav>
+    <section id="content">
+        <h1>Log in to your <span class="stroked-text small-text">Tyler fxbtc</span> account</h1>
+        <form action="/login" method="post" autocomplete="false">
+            <label for="email">
+                <div><i class="fa-solid fa-envelope"></i></div>
+                <div><input type="email" name="email" id="email" placeholder="Email adress" required autocomplete="off"></div>
+            </label>
+            
+            <label for="password">
+               <div> <i class="fa-solid fa-lock"></i></div>
+                <div><input type="password" name="password" id="password" placeholder="Password" required autocomplete="off"></div>
+            </label>
+            <div class="pwd-t"><a href="#">forgot password?</a></div>
+            <button type="submit" id="submit-btn">Log In</button>
+            <div id="pwd-opts">
+                
+                <div><span>Dont have an account yet? <a href="/signup"> Sign Up</a></span></div> 
+            </div>
+        </form>
+
+        
+    </section>
+    <script>
+        function submitInfo(){
+            startLoad();
+            const formData = new FormData(document.forms[0]);
+
+            fetch('/login', {
+                body: formData,
+                method: 'POST'
+            }).then(e=>e.json()).then(user=>{
+                document.forms[0].reset();
+                if(user.error){
+                    error(user.error)
+                }else if(user.id){
+                    localStorage.setItem('user', JSON.stringify(user));
+                    setTimeout(()=>{
+                        location.href = '/dashboard';
+                    }, 100)
+                }else{
+                    warn('an error occured, please try again');
+                    endLoad()
+                }
+            }).catch(err=>{
+                error('an error occured');
+                setTimeout(()=>{
+                    location.reload();
+                }, 1000)
+            })
+        }
+        document.forms[0].onsubmit = e=>{
+            e.preventDefault();
+            submitInfo();
+        }
+    </script>
+    <style>
+        :root{
+    --primary-color: gold;
+    --dark-color: goldenrod;
+    --bg-color: rgb(0, 0, 92);
+}
+
+@font-face {
+    font-family: nunito;
+    src: url(./css/Nunito-VariableFont_wght.ttf);
+}
+*{
+    font-family: nunito;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    max-width: 100vw;
+    font-weight: 600;
+    
+}
+body{
+    height:fit-content;
+    width: fit-content;
+    margin: auto;
+    background: url(./images/crypto-walpaper-dark.png);
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.stroked-text{
+    font-family: nunito;
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--primary-color);
+}
+.small-text{
+    -webkit-text-stroke-width: 1px;
+}
+nav{
+    width: fit-content;
+    margin: 5px auto;
+    height: fit-content;
+    z-index: 10px;
+}
+img{
+    max-width: 7rem;
+    position: relative;
+}
+i{
+    font-size: 30px;
+    color: rgb(85, 85, 85);
+}
+.blue{
+    color: rgb(0, 0, 83);
+}
+.orange{
+    color: rgb(255, 166, 0);
+}
+.azure{
+    color: rgb(46, 161, 255);
+}
+nav div{
+    font-size: 3rem;
+    font-weight: 900;
+}
+nav div:nth-child(1){
+    text-align: right;
+}
+nav div:nth-child(2){
+    text-align: left;
+}
+
+
+h1{
+    text-align: center;
+    font-family: nunito;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+}
+
+section{
+    margin: 4px auto;
+    padding: 6px;
+    height: fit-content;
+    z-index: 10;
+}
+#content h1:nth-child(1){
+    color: var(--primary-color);
+}
+form{
+    height: fit-content;
+    width: fit-content;
+    padding: 25px; 
+    border-radius: 20px;
+    margin: 5px auto;
+    box-shadow: 0px 0px 10px 0px var(--dark-color);
+    background-color: white;
+    z-index: 100;
+}
+form *{
+    z-index: 100;
+}
+label{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    height: 50px;
+    margin: 5px;
+}
+
+input {
+    border-bottom: 1px solid var(--dark-color);
+    min-width: 200px;
+    max-width: 400px;
+    width: 300px;
+    /* color:var(--primary-color); */
+    padding: 2.5px;
+    outline: none;
+}
+.entry-icon{
+    height: 30px;
+}
+
+#dob:hover{
+    content: Date Of Birth;
+}
+
+button{
+    background-color: var(--primary-color);
+    margin: 5px auto;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    z-index: 100;
+}
+
+button:hover{
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px var(--dark-color);
+}
+
+button:disabled:hover{
+    box-shadow: none;
+    background-color: var(--primary-color);
+}
+#pwd-opts, .pwd-t{
+    margin-top: 20px;
+    font-size: 12px;
+   
+}
+#pwd-opts{
+    text-align: center;
+}
+#pwd-opts a{
+
+    font-size: 11px;
+}
+.pwd-t{
+    text-align: right;
+}
+.pwd-t a{
+    margin-bottom: 1rem;
+
+}
+    </style>
+</body>
+</html>

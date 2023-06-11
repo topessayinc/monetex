@@ -1,0 +1,40 @@
+<script>
+    let usr = localStorage.user;
+    if(!usr ){
+        location.href= '/login';
+    }
+    usr = JSON.parse(usr);
+    if(!usr.id){
+        location.href = '/login'
+    }
+
+    function logout(){
+            localStorage.clear();
+            location.reload();
+        }
+</script>
+<nav>
+    <div id="icon"><img src="./images/icon.png" alt="Metal Mint Logo"></div>
+    <div class="mb ok-cancel" id="mb-cancel-btn">
+        <i class="fa-solid fa-xmark"></i>
+        <i class="fa-solid fa-bars-staggered mb-hidden"></i>
+    </div>
+    <div id="nav-options">
+        <li><a href="/dashboard" class="innactive-link"><span class="dashboard-link"><i class="fa-solid fa-ellipsis-vertical"></i><i class="fa-solid fa-ellipsis-vertical"></i><i class="fa-solid fa-ellipsis-vertical"></i></span> <span>Dashboard</span></a></li>
+        <li><a href="/deposit"><i class="fa-solid fa-circle-dollar-to-slot"></i> <span>Deposit</span></a></li>
+        <li><a href="/withdraw"><i class="fa-solid fa-credit-card"></i><span>Withdraw</span></a></li>
+        <li><a href="/referals"><i class="fa-solid fa-link"></i><span>Referals</span></a></li>
+        <li><a href="/report"><i class="fa-solid fa-chart-pie"></i> <span>Report</span></a></li>
+        </div>
+    <div id="profile">
+        <button><a href="/"><i class="fa-solid fa-home"></i> <span>Home</span></a></button>
+        <button onclick="logout()"><i class="fa-solid fa-right-to-bracket"></i> <span>Logout</span></button>
+    </div>
+</nav>
+<header>
+    <h1><%= title %> </h1>
+    <div id="navigation-container">
+        <div><a href="/">Home <i class="fa-solid fa-home"></i></a>  
+            <a href="/dashboard" class="innactive-link">Dashboard <span class="dashboard-link"><i class="fa-solid fa-ellipsis-vertical"></i><i class="fa-solid fa-ellipsis-vertical"></i><i class="fa-solid fa-ellipsis-vertical"></i></span></a></div>
+    </div>
+</header>

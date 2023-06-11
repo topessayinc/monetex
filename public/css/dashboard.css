@@ -1,0 +1,602 @@
+@charset "utf-8";
+@import url(./fa.imports.css);
+
+@font-face {
+    font-family: abel;
+    src: url(./Nunito-VariableFont_wght.ttf);
+}
+
+*{ 
+    transition: 400ms;
+    margin: 0px; padding: 0px; outline: none; list-style-type: none; font-family: abel; color: white;}
+
+img{
+    max-width:30px;
+}
+body{
+    background-color: #101112;
+}
+
+.hidden{
+    display: none !important;
+}
+nav{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #1f2122;
+    font-size: 28px;
+    text-align: center;
+    width: 100vw;
+}
+
+.collapse{
+    display: none;
+}
+
+.company-icon{
+    width: fit-content;
+    margin: 1px auto;
+}
+
+.nav-left{
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 2rem;
+     font-size: 1.5rem;
+     padding:.5rem 0px;
+}
+
+.notification{
+    text-align: right;
+}
+
+.user-icon{
+    text-align: left;
+}
+
+._3-dots, #collapse-icon{
+    position: fixed;
+    top: .5rem;
+    font-size: 1.5rem;
+    z-index: 11;
+}
+
+._3-dots{
+    right: 1rem;;
+}
+
+#collapse-icon{
+    left: 1.2rem;
+    top: 35px;
+}
+#collapse-icon.stretched{
+    left: 7rem;
+}
+#left{
+    width: fit-content;
+    padding: 1rem;
+    font-size: 1.2rem;
+    position: fixed;
+    background-color: #1f2122;
+    top: 35px;
+    height: calc(100vh - 35px);
+}
+
+#left > div{
+ margin: 1.2rem auto;
+ padding: .5rem;
+ border-radius: .25rem;
+}
+#left > div:hover{
+    background-color: #464747;
+    color: white;
+}
+.active-tab{
+    background-color: #6cd3ff;
+    color: black;
+}
+.icon-l{
+    padding-right: 1rem;
+}
+
+#left span, #left i, #collapse-icon i{
+    color: gray;
+}
+#w-mo > *{
+    padding: 5px;
+    border-radius: 5px;
+    margin: 4px auto;
+    background-color: #101112;
+}
+.content{
+    padding: 3rem 0rem 0rem 6rem;
+}
+
+.content.compressed{
+    padding-left: 12rem;
+}
+
+header{
+    padding: .5rem;
+}
+
+header h1{
+    font-size: 1.75rem;
+    padding: 1.2rem 0rem;
+}
+
+#options-h{
+    display: flex;
+    padding: .5rem 1rem;
+    background-color: #1f2122;
+    margin: .5rem 0px;
+}
+
+#options-h li{
+    width: fit-content;
+    margin: 0px .5rem;
+}
+
+.icon-h-o{
+    padding: 0px .4rem;
+}
+
+
+.info{
+    padding: .75rem;
+    border-radius: .5rem;
+    background-color: #1f2122;
+    margin: .75rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.info-icon{
+    font-size: 2.5rem;
+    text-align: center;
+}
+.info-key{
+    font-size: 1rem;
+    color: rgb(196, 196, 196);
+}
+.info-val{
+    font-size: 2rem;
+}
+
+.i-1 { color: gold;}
+.i-2 { color: green;}
+.i-3 { color: rgb(255 84 84);}
+.i-4 { color: rgb(0, 132, 255);}
+.i-5 { color: rgb(255 84 84);}
+.i-6 { color: rgb(73, 73, 255);}
+
+#new-deposit-btn, #deposit header button{
+    display: block;
+    width: fit-content;
+    padding: 10px;
+    border: none;
+    margin: 10px 0px;
+}
+#deposit header button a{
+    color: black;
+    text-decoration: none;
+}
+
+#close-deposit-popup{
+    padding: 15px;
+    background-color: rgb(11, 11, 32);
+}
+
+
+@media screen  and (min-width: 768px) {
+    #user-info{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width : 1080px){
+    #user-info{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    nav{
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+    }
+    .mb{
+        display: none;
+    }
+    #nav-left{
+        display: grid !important;
+    }
+    #collapse-icon{
+        display: none;
+    }
+    .title-l.collapse{
+        display: inline-block;
+    }
+
+    .content{
+        padding-left: 12rem;
+    }
+}
+
+@media screen  and (min-width:1200px) {
+    #user-info{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* my designs */
+
+#btn-action{
+    background-color: #fff;
+    padding: 10px;
+    color: black;
+    font-size: large;
+    border-radius: 5px;
+}
+#my-icon{
+    color: black;
+}
+.deposit-titles{
+    background-color: #464747;
+    padding-top: 10px;
+    margin-top: 45px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    padding-left: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+}
+#investment-plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 25px;
+}
+.investment-plan{
+    padding: 25px;
+    background-color: #464747;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+.investment-plan h3,h2,p {
+    text-align: center;
+    padding: 5px;
+}
+.investment-plan h3{
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.investment-plan h2{
+    font-size: 18px;
+}
+.investment-plan p{
+    color: #a7aaaa;
+    margin-bottom: 20px;
+}
+#invest{
+    color: #101112;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    margin: 10px 0px;
+    border: none;
+}
+#invest-amount{
+    margin-top: 20px;
+    padding: 10px;
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    background-color: #111111;
+}
+.k-v{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+#withdraw-cards{
+    margin: 0 auto;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.withdraw-card{
+    background-color: #464747;
+    border-radius: 10px;
+    margin: 0 15px;
+    padding: 20px;
+}
+.request{
+    justify-content: center;
+    align-items: center;
+}
+#btn-request{
+    color: #000;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 25px;
+    width: 60%;
+    margin-left: 50px;
+    border: none;
+   
+}
+#request-icon{
+    color: #000;
+    font-size: 18px;
+}
+.rl{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 15px 0 15px 0;
+}
+
+.rl .r{
+    padding-top: 30px;
+}
+.rl .l{
+    padding-top: 30px;
+}
+#make-payment-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px;
+}
+.coin{
+    padding: 15px;
+    margin: 10px;
+    background-color: #1f2122;
+    border-radius: 5px;
+}
+#copy{
+    padding: 12px;
+    border: none;
+    color: #000;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.coin-title,.coin-addr-title,.coin-addr-name{
+    margin-top: 15px;
+    font-size: 18px;
+}
+.coin-addr-title{
+    color: #7e8080;
+}
+.online{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#proof{
+    display: block;
+    width: 50%;
+    padding: 30px;
+}
+#proof label {
+    padding: 10px;
+}
+#pay-proof-file{
+    padding: 15px;
+    width: 95%;
+    margin-top: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+#pay-proof-coin{
+    padding: 10px;
+    width: 100%;
+    color: white;
+    background-color: #1f2122;
+    border: 1pc solid white;
+    border-radius: 5px;
+}
+#submit-proof{
+    padding: 15px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 15px;
+}
+.transaction-titles{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px;
+}
+.transaction-titles div{
+    padding: 5px 10px;
+}
+
+.trn-active-tab{
+    width: fit-content;
+    font-weight: 600;
+    padding: 5px 20px;
+    background-color: #7e8080;
+    color: black;
+}
+#divide {
+    color: white;
+}
+.transactions-t-h{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+#referals {
+    padding: 20px;
+    padding-left: 200px;
+}
+.referal-link{
+    border-radius: 5px;
+    justify-content: center;
+    background-color: #464747;
+    padding: 30px;
+}
+
+#referal-table{
+    background-color: #464747;
+    border-radius: 5px;
+    padding: 30px;
+    justify-content: center;
+}
+#referal-table-header{
+    display: grid;
+    grid-template-columns: 4fr 2fr 2fr 3fr;
+    
+}
+@media screen and (max-width:1080px){
+    #investment-plans{
+        grid-template-columns: 1fr 1fr;
+    }
+    .investment-plan{
+        margin: 10px;
+    }
+}
+/* small devices */
+@media only screen and (max-width: 768px) {
+    #deposit-content{
+        padding: 10;
+        margin: 0;
+    }
+    #investment-plans{
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+    .investment-plan{
+        width: 60%;
+        margin: 10px auto;
+    }
+    #withdraw-cards{
+        display: block;
+        justify-content: center;
+    }
+    .withdraw-card{
+        width: 90%;
+        margin: 10px auto;
+    }
+    #make-payment-content{
+        display: block;
+        justify-content: center;
+    }
+    .coin{
+        margin: 10px auto;
+        width: 80%;
+    }
+    .online{
+        display: block;
+        justify-content: center;
+    }
+    .live{
+        margin: 10px auto;
+        width: 80%;
+    }
+    #referal{
+        width: 100%;
+        padding: 0;
+        display: block;
+        justify-content: center;
+    }
+    #referal-header{
+        margin-left: -100px;
+        margin-right: 8px;
+    }
+   
+    .referal-link{
+        width: 90%;
+        margin: 10px auto;
+    }
+    #referal-table{
+        width: 100%;
+        margin: 10 auto;
+        margin-right: -38px;
+        margin-left: -95px;
+    }
+  }
+
+  #deposit-amount-window, #withdraw-request-box{
+    position: fixed;
+    top: 50px;
+    padding: 25px;
+    left: calc(50vw - 200px);
+    width: 400px;
+    background-color: rgba(0, 0, 29, 0.467);
+    border-radius: 5px;
+    backdrop-filter: blur(20px);
+    border: 1px solid grey;
+  }
+#deposit-amount-window > div, #withdraw-request-box > div{
+    width: 400px;
+    text-align: center;
+    font-size: large;
+    padding: 10px;
+}
+#close-deposit-popup, #close-withdraw-box{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+}
+
+#deposit-amount-window *{
+    background-color: transparent;
+}
+#deposit-amount-window button{
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: gray;
+}
+
+#message{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: fit-content;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    transition: ease 400ms;
+    z-index: 200;
+}
+#message-content{
+    text-align: center;
+}
+.transactions-t-h, .transactions-t-b>*:nth-child(even){
+    background-color: rgba(0, 0, 107, 0.582);
+}
+.withdraw-record,.transactions-t-h{
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 3fr;
+}
+.withdraw-record > div, .transactions-t-h > div{
+     padding: 5px;
+}
+.withdraw-record> div:nth-child(odd), .transactions-t-h > div:nth-child(odd){
+    background-color: #a7aaaa93;
+    color: black;
+}
+
+/* support page */
+#support{
+    padding: 100px;
+}
+.support-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 60px 50px;
+}
+.support-content h4,p{
+    text-align: left;
+    padding: 5px;
+    margin-top: 5px;
+}
+
