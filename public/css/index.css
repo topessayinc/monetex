@@ -1,5 +1,5 @@
 @charset "utf8";
-@import "./fa.imports.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
 @import "./large_devices.css" screen and (min-width: 1200px);
 @import "./small_devices.css" screen and (max-width: 768px);
 @import "./tablet_devices.css" screen and (min-width: 768px) and (max-width: 1200px);
